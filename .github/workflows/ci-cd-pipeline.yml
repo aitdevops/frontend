@@ -41,13 +41,15 @@ jobs:
         cd frontend
         docker build -t ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.ARTIFACT_REPO }}/frontend:latest .
         docker push ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.ARTIFACT_REPO }}/frontend:latest
+        cd ..
 
     - name: Build and push Docker images for services
       run: |
         for service in product-service order-service user-service; do
-          cd ../services/$service
+          cd services/$service
           docker build -t ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.ARTIFACT_REPO }}/$service:latest .
           docker push ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.ARTIFACT_REPO }}/$service:latest
+          cd ../..
         done
 
     - name: Get GKE credentials
