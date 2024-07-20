@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+  labels:
+    app: product-service
+spec:
+  replicas: {{ .Values.product-service.replicaCount }}
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      containers:
+        - name: product-service
+          image: "{{ .Values.product-service.image.repository }}:{{ .Values.product-service.image.tag }}"
+          ports:
+            - containerPort: 80
+          resources:
+            {{- toYaml .Values.product-service.resources | nindent 12 }}
+      nodeSelector:
+        {{- toYaml .Values.product-service.nodeSelector | nindent 8 }}
+      tolerations:
+        {{- toYaml .Values.product-service.tolerations | nindent 8 }}
+      affinity:
+        {{- toYaml .Values.product-service.affinity | nindent 8 }}

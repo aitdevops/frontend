@@ -1,0 +1,68 @@
+frontend:
+  replicaCount: 1
+  image:
+    repository: us-central1-docker.pkg.dev/aitdevops8/aitdevops/frontend
+    pullPolicy: Always
+    tag: "latest"
+  service:
+    type: LoadBalancer
+    port: 80
+  ingress:
+    enabled: true
+    annotations: {}
+    hosts:
+      - host: frontend.example.com
+        paths: []
+    tls: []
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+orderService:
+  replicaCount: 1
+  image:
+    repository: s-central1-docker.pkg.dev/aitdevops8/aitdevops/order-service
+    pullPolicy: Always
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8080
+  ingress:
+    enabled: false
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+productService:
+  replicaCount: 1
+  image:
+    repository: us-central1-docker.pkg.dev/aitdevops8/aitdevops/product-service
+    pullPolicy: Always
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8080
+  ingress:
+    enabled: false
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+userService:
+  replicaCount: 1
+  image:
+    repository: s-central1-docker.pkg.dev/aitdevops8/aitdevops/user-service
+    pullPolicy: Always
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8080
+  ingress:
+    enabled: false
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
