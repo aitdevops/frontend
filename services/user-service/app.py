@@ -9,7 +9,7 @@ def users():
     return {
         "users": [
             "Raya",
-            "Supriya",
+            "Supiya",
             "ajeev"
         ]
     }
