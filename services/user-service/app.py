@@ -8,7 +8,7 @@ CORS(app)
 def users():
     return {
         "users": [
-            "Sanjay",
+            "Raya",
             "Supriya",
             "Rajeev"
         ]
