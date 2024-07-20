@@ -21,15 +21,20 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
-        service_account_key: ${{ secrets.GOOGLE_CREDENTIALS }}
         project_id: ${{ secrets.PROJECT_ID }}
+        install_components: kubectl
 
     - name: Configure Docker
       run: |
-        echo ${{ secrets.GOOGLE_CREDENTIALS }} | docker login -u _json_key --password-stdin https://${{ secrets.REGION }}-docker.pkg.dev
+        gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
 
     - name: Build and push Docker image for frontend
       run: |
