@@ -14,8 +14,9 @@ jobs:
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       CLUSTER_ZONE: ${{ secrets.CLUSTER_ZONE }}
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      ARTIFACT_REPO: aitdevops
-      REGION: us-central1  # Ensure to set this to your appropriate region
+      REGION: ${{ secrets.REGION }}
+      ARTIFACT_REPO: ${{ secrets.ARTIFACT_REPO }}
+      IMAGE_TAG: latest
 
     steps:
     - name: Checkout code
@@ -33,31 +34,23 @@ jobs:
 
     - name: Build and push frontend Docker image
       run: |
-        cd frontend
-        docker build -t $ARTIFACT_REPO/frontend:latest .
-        docker tag $ARTIFACT_REPO/frontend:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/frontend:latest
-        docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/frontend:latest
+        docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/frontend:${{ env.IMAGE_TAG }} -f frontend/Dockerfile ./frontend
+        docker push ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/frontend:${{ env.IMAGE_TAG }}
 
     - name: Build and push product-service Docker image
       run: |
-        cd ../services/product-service
-        docker build -t $ARTIFACT_REPO/product-service:latest .
-        docker tag $ARTIFACT_REPO/product-service:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/product-service:latest
-        docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/product-service:latest
+        docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/product-service:${{ env.IMAGE_TAG }} -f services/product-service/Dockerfile ./services/product-service
+        docker push ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/product-service:${{ env.IMAGE_TAG }}
 
     - name: Build and push order-service Docker image
       run: |
-        cd ../order-service
-        docker build -t $ARTIFACT_REPO/order-service:latest .
-        docker tag $ARTIFACT_REPO/order-service:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/order-service:latest
-        docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/order-service:latest
+        docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/order-service:${{ env.IMAGE_TAG }} -f services/order-service/Dockerfile ./services/order-service
+        docker push ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/order-service:${{ env.IMAGE_TAG }}
 
     - name: Build and push user-service Docker image
       run: |
-        cd ../user-service
-        docker build -t $ARTIFACT_REPO/user-service:latest .
-        docker tag $ARTIFACT_REPO/user-service:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/user-service:latest
-        docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/user-service:latest
+        docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/user-service:${{ env.IMAGE_TAG }} -f services/user-service/Dockerfile ./services/user-service
+        docker push ${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/user-service:${{ env.IMAGE_TAG }}
 
     - name: Get GKE credentials
       run: |
@@ -65,7 +58,7 @@ jobs:
 
     - name: Deploy to GKE using Helm
       run: |
-        helm upgrade --install frontend ./helm/frontend --set image.repository=$REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/frontend
-        helm upgrade --install product-service ./helm/product-service --set image.repository=$REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/product-service
-        helm upgrade --install order-service ./helm/order-service --set image.repository=$REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/order-service
-        helm upgrade --install user-service ./helm/user-service --set image.repository=$REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/user-service
+        helm upgrade --install frontend ./helm/frontend --set image.repository=${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/frontend,image.tag=${{ env.IMAGE_TAG }}
+        helm upgrade --install product-service ./helm/product-service --set image.repository=${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/product-service,image.tag=${{ env.IMAGE_TAG }}
+        helm upgrade --install order-service ./helm/order-service --set image.repository=${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/order-service,image.tag=${{ env.IMAGE_TAG }}
+        helm upgrade --install user-service ./helm/user-service --set image.repository=${{ env.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/user-service,image.tag=${{ env.IMAGE_TAG }}
