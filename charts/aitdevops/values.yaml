@@ -22,7 +22,7 @@ frontend:
 orderService:
   replicaCount: 1
   image:
-    repository: s-central1-docker.pkg.dev/aitdevops8/aitdevops/order-service
+    repository: us-central1-docker.pkg.dev/aitdevops8/aitdevops/order-service
     pullPolicy: Always
     tag: "latest"
   service:
@@ -54,7 +54,7 @@ productService:
 userService:
   replicaCount: 1
   image:
-    repository: s-central1-docker.pkg.dev/aitdevops8/aitdevops/user-service
+    repository: us-central1-docker.pkg.dev/aitdevops8/aitdevops/user-service
     pullPolicy: Always
     tag: "latest"
   service:
