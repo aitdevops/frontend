@@ -10,7 +10,7 @@ def products():
         "products": [
             "Ferrari",
             "Porsche",
-            "AUDI"
+            "bmw"
         ]
     }
 
