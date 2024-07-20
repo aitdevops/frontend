@@ -8,9 +8,9 @@ CORS(app)
 def orders():
     return {
         "orders": [
-            "Order 1",
-            "Order 2",
-            "Order 3"
+            "Order a",
+            "Order b",
+            "Order c"
         ]
     }
 

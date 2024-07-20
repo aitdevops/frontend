@@ -9,7 +9,7 @@ def products():
     return {
         "products": [
             "Maybach",
-            "bently",
+            "Bently",
             "Rolls-Royce
         ]
     }
