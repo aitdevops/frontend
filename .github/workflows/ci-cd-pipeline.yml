@@ -82,21 +82,21 @@ jobs:
         gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --zone ${{ secrets.CLUSTER_ZONE }} --project ${{ secrets.PROJECT_ID }}
         
         if [[ "${{ steps.filter_paths.outputs.frontend }}" == 'true' ]]; then
-          helm upgrade --install frontend ./frontend --set image.tag=${{ env.IMAGE_TAG }}
+          helm upgrade --install frontend ./charts/aitdevops/templates/frontend --set image.tag=${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/frontend
         fi
         
         if [[ "${{ steps.filter_paths.outputs.product-service }}" == 'true' ]]; then
-          helm upgrade --install product-service ./product-service --set image.tag=${{ env.IMAGE_TAG }}
+          helm upgrade --install product-service ./charts/aitdevops/templates/product-service --set image.tag=${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/product-service
         fi
         
         if [[ "${{ steps.filter_paths.outputs.order-service }}" == 'true' ]]; then
-          helm upgrade --install order-service ./order-service --set image.tag=${{ env.IMAGE_TAG }}
+          helm upgrade --install order-service ./charts/aitdevops/templates/order-service --set image.tag=${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/order-service
         fi
         
         if [[ "${{ steps.filter_paths.outputs.user-service }}" == 'true' ]]; then
-          helm upgrade --install user-service ./user-service --set image.tag=${{ env.IMAGE_TAG }}
+          helm upgrade --install user-service ./charts/aitdevops/templates/user-service --set image.tag=${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/user-service
         fi
