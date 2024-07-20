@@ -15,6 +15,7 @@ jobs:
       CLUSTER_ZONE: ${{ secrets.CLUSTER_ZONE }}
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       ARTIFACT_REPO: aitdevops
+      REGION: us-central1  # Ensure to set this to your appropriate region
 
     steps:
     - name: Checkout code
@@ -39,21 +40,21 @@ jobs:
 
     - name: Build and push product-service Docker image
       run: |
-        cd services/product-service
+        cd ../services/product-service
         docker build -t $ARTIFACT_REPO/product-service:latest .
         docker tag $ARTIFACT_REPO/product-service:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/product-service:latest
         docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/product-service:latest
 
     - name: Build and push order-service Docker image
       run: |
-        cd services/order-service
+        cd ../order-service
         docker build -t $ARTIFACT_REPO/order-service:latest .
         docker tag $ARTIFACT_REPO/order-service:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/order-service:latest
         docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/order-service:latest
 
     - name: Build and push user-service Docker image
       run: |
-        cd services/user-service
+        cd ../user-service
         docker build -t $ARTIFACT_REPO/user-service:latest .
         docker tag $ARTIFACT_REPO/user-service:latest $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/user-service:latest
         docker push $REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REPO/user-service:latest
