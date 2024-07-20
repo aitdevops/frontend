@@ -8,7 +8,7 @@ CORS(app)
 def products():
     return {
         "products": [
-            "Maybach",
+            "Maaybach",
             "Bently",
             "Rolls-Royce
         ]
