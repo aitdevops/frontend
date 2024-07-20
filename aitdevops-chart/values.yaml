@@ -1,0 +1,28 @@
+image:
+  repository: us-docker.pkg.dev/aitdevops8/company-y/aitdevops8/frontend
+  tag: latest
+
+productService:
+  image:
+    repository: us-docker.pkg.dev/aitdevops8/company-y/aitdevops8/product-service
+    tag: latest
+
+orderService:
+  image:
+    repository: us-docker.pkg.dev/aitdevops8/company-y/aitdevops8/order-service
+    tag: latest
+
+userService:
+  image:
+    repository: us-docker.pkg.dev/aitdevops8/company-y/aitdevops8/user-service
+    tag: latest
+
+service:
+  productService:
+    port: 5001
+  orderService:
+    port: 5002
+  userService:
+    port: 5003
+  frontend:
+    port: 80

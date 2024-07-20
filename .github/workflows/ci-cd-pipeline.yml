@@ -58,6 +58,4 @@ jobs:
 
     - name: Deploy to GKE using Helm
       run: |
-        for service in frontend product-service order-service user-service; do
-          helm upgrade --install $service ./charts/$service --set image.repository=${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.ARTIFACT_REPO }}/$service --set image.tag=latest --namespace default
-        done
+        helm upgrade --install aitdevops ./aitdevops-chart --set image.repository=${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.ARTIFACT_REPO }}/frontend --set image.tag=latest --namespace default
