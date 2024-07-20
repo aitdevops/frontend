@@ -100,4 +100,3 @@ jobs:
           helm upgrade --install user-service ./user-service --set image.tag=${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/user-service
         fi
-
