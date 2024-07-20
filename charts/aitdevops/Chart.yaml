@@ -1,4 +1,1 @@
-apiVersion: v2
-name: aitdevops
-description: A Helm chart for the aitdevops application
-version: 0.1.0
+aitdevops/charts/aitdevops/Chart.yaml
