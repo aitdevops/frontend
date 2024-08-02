@@ -8,4 +8,4 @@ ingress:
   hosts:
     - aitdevops.com
   tls: []
-  static_ip: "34.111.69.92"
+  # Removed static_ip
