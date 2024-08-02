@@ -42,27 +42,10 @@ section {
     width: 80%;
     max-width: 600px;
     position: relative;
+    min-height: 100vh; /* Ensure sections take full viewport height */
 }
 
 h2 {
     font-size: 1.8em;
     text-shadow: 2px 2px 4px #000;
-}
-
-button {
-    font-size: 1em;
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
 }

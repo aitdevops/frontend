@@ -3,7 +3,7 @@ name: Deploy to GKE
 on:
   push:
     branches:
-      - frontend
+      - main
 
 jobs:
   build-and-deploy:
@@ -38,5 +38,4 @@ jobs:
       run: |
         gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
         helm upgrade --install aitdevops-site ./charts/aitdevops-site \
-          --set frontend.image=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ env.IMAGE_TAG }} \
-          --set ingress.static_ip="34.111.69.92"
+          --set frontend.image=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ env.IMAGE_TAG }}
