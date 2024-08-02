@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "aitdevops-site.fullname" . }}-frontend
+  annotations:
+    networking.gke.io/managed-certificates: "aitdevops-ssl"
   labels:
     app.kubernetes.io/name: {{ include "aitdevops-site.name" . }}
     helm.sh/chart: {{ include "aitdevops-site.chart" . }}
