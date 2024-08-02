@@ -1,0 +1,23 @@
+frontend:
+  image: us-central1-docker.pkg.dev/aitdevops8/aitdevops-gke/frontend:latest
+  service:
+    type: LoadBalancer
+    port: 80
+
+orderService:
+  image: us-central1-docker.pkg.dev/aitdevops8/aitdevops-gke/order-service:latest
+  service:
+    type: ClusterIP
+    port: 5002
+
+productService:
+  image: us-central1-docker.pkg.dev/aitdevops8/aitdevops-gke/product-service:latest
+  service:
+    type: ClusterIP
+    port: 5001
+
+userService:
+  image: us-central1-docker.pkg.dev/aitdevops8/aitdevops-gke/user-service:latest
+  service:
+    type: ClusterIP
+    port: 5003
