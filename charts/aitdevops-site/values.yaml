@@ -3,6 +3,7 @@ frontend:
   service:
     type: LoadBalancer
     port: 80
+    loadBalancerIP: 34.111.69.92
 
 orderService:
   image: us-central1-docker.pkg.dev/aitdevops8/aitdevops-gke/order-service:latest
