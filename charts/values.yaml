@@ -1,0 +1,11 @@
+frontend:
+  image: ""
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  hosts:
+    - aitdevops.com
+  tls: []
+  static_ip: "34.111.69.92"
