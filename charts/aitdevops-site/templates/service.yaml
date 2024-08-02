@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.ingress.static_ip }}
+  ports:
+    - port: 80
+  selector:
+    app: frontend
