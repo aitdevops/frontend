@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderServiceUrl = 'http://aitdevops-site-aitdevops-site-order-service.default.svc.cluster.local:5002';
     const userServiceUrl = 'http://aitdevops-site-aitdevops-site-user-service.default.svc.cluster.local:5003';
 
-    
-
     document.getElementById('fetch-products').addEventListener('click', function() {
         fetch(`${productServiceUrl}/products`)
             .then(response => response.json())
@@ -45,5 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const usersDiv = document.getElementById('users');
                 usersDiv.innerHTML = 'Error fetching users. Service might be down.';
             });
+    });
+
+    // Parallax effect
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const scrollPosition = window.scrollY;
+        
+        sections.forEach((section, index) => {
+            const offset = section.offsetTop;
+            if (scrollPosition >= offset - window.innerHeight && scrollPosition < offset + section.offsetHeight) {
+                document.body.style.backgroundImage = `url('background${index + 1}.jpg')`;
+            }
+        });
     });
 });
