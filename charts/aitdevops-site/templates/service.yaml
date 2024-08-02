@@ -4,7 +4,7 @@ metadata:
   name: frontend
 spec:
   type: LoadBalancer
-  loadBalancerIP: {{ .Values.ingress.static_ip }}
+  loadBalancerIP: {{ .Values.ingress.static_ip | quote }}
   ports:
     - port: 80
   selector:
