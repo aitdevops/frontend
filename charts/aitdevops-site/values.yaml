@@ -1,11 +1,6 @@
-frontend:
-  image: ""
+image:
+  repository: us-central1-docker.pkg.dev/{{ .Release.Namespace }}/aitdevops-gke/frontend
+  tag: "latest"
 
 ingress:
-  enabled: true
-  className: ""
-  annotations: {}
-  hosts:
-    - aitdevops.com
-  tls: []
-  # Removed static_ip
+  host: "aitdevops.com"

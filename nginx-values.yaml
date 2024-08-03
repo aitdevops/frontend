@@ -1,0 +1,10 @@
+controller:
+  replicaCount: 1
+  service:
+    externalTrafficPolicy: Local
+  metrics:
+    enabled: true
+  admissionWebhooks:
+    enabled: true
+  podLabels:
+    app: ingress-nginx

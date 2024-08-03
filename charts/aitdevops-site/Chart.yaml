@@ -1,6 +1,5 @@
 apiVersion: v2
 name: aitdevops-site
-description: A Helm chart for Kubernetes
-type: application
+description: A Helm chart for deploying a frontend application
 version: 0.1.0
 appVersion: "1.0"

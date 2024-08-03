@@ -1,19 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: {{ include "aitdevops-site.fullname" . }}
+  labels:
+    {{- include "aitdevops-site.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      {{- include "aitdevops-site.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: frontend
+        {{- include "aitdevops-site.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-        - name: frontend
-          image: "{{ .Values.frontend.image }}"
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            timeoutSeconds: 5

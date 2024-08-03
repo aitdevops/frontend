@@ -3,13 +3,11 @@ name: Deploy to GKE
 on:
   push:
     branches:
-      - frontend
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      IMAGE_TAG: ${{ github.sha }}
 
     steps:
     - name: Checkout code
@@ -31,11 +29,26 @@ jobs:
 
     - name: Build and push frontend image
       run: |
-        docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ env.IMAGE_TAG }} -f frontend/Dockerfile ./frontend
-        docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ env.IMAGE_TAG }}
+        docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }} -f frontend/Dockerfile ./frontend
+        docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
+
+    - name: Deploy NGINX Ingress controller
+      run: |
+        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+        helm repo update
+        helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace -f nginx-values.yaml
+
+    - name: Deploy cert-manager
+      run: |
+        helm repo add jetstack https://charts.jetstack.io
+        helm repo update
+        helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace -f cert-manager-values.yaml
+
+    - name: Apply ClusterIssuer
+      run: kubectl apply -f cluster-issuer.yaml
 
     - name: Deploy to GKE
       run: |
         gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
         helm upgrade --install aitdevops-site ./charts/aitdevops-site \
-          --set frontend.image=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ env.IMAGE_TAG }}
+          --set image.tag=${{ github.sha }}
