@@ -1,5 +1,5 @@
 image:
-  repository: us-central1-docker.pkg.dev/your_actual_project_id/aitdevops-gke/frontend
+  repository: us-central1-docker.pkg.dev/aitdevops8/aitdevops-gke/frontend
   tag: "latest"
 
 ingress:
