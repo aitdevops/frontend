@@ -16,6 +16,9 @@ header {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 h1 {
@@ -24,30 +27,15 @@ h1 {
     text-shadow: 2px 2px 4px #000;
 }
 
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
+.linkedin-icon {
     color: white;
+    font-size: 1.5em;
     text-decoration: none;
-    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.linkedin-icon:hover {
+    color: #0077b5;
 }
 
 main {
@@ -104,12 +92,12 @@ html {
 }
 
 @media (max-width: 600px) {
+    body {
+        background-size: cover;
+    }
+
     h1 {
         font-size: 2em;
-    }
-    
-    nav ul li a {
-        font-size: 1em;
     }
 
     .overlay {
