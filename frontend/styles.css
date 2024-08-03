@@ -24,6 +24,32 @@ h1 {
     text-shadow: 2px 2px 4px #000;
 }
 
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -53,6 +79,46 @@ section {
 h2 {
     font-size: 1.8em;
     text-shadow: 2px 2px 4px #000;
+}
+
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#back-to-top:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    nav ul li a {
+        font-size: 1em;
+    }
+
+    .overlay {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
 }
 
 /* High-resolution images for Retina displays */
