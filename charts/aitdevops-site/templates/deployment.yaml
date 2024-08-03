@@ -8,11 +8,13 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      {{- include "aitdevops-site.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        {{- include "aitdevops-site.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ .Chart.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
