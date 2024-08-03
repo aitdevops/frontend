@@ -24,6 +24,10 @@ jobs:
         project_id: ${{ secrets.PROJECT_ID }}
         install_components: kubectl
 
+    - name: Configure kubectl
+      run: |
+        gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
+
     - name: Configure Docker for GCP
       run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
