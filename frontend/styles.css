@@ -1,3 +1,4 @@
+/* Base styles for body and background */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -13,6 +14,7 @@ body {
     background-size: cover;
 }
 
+/* Header styling */
 header {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
@@ -25,6 +27,7 @@ h1 {
     text-shadow: 2px 2px 4px #000;
 }
 
+/* Main section styling */
 main {
     display: flex;
     flex-direction: column;
@@ -32,6 +35,7 @@ main {
     padding: 20px;
 }
 
+/* Section styling */
 section {
     width: 100%;
     min-height: 100vh;
@@ -41,6 +45,7 @@ section {
     position: relative;
 }
 
+/* Overlay styling for content */
 .overlay {
     background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
     backdrop-filter: blur(10px); /* Background blur */
@@ -59,7 +64,7 @@ h2 {
 /* Media queries for mobile devices */
 @media (max-width: 768px) {
     body {
-        background-size: auto 100%; /* Adjust background size for mobile */
+        background-size: cover; /* Maintain cover size for mobile */
     }
 
     h1 {
@@ -76,9 +81,26 @@ h2 {
     }
 }
 
-/* High-resolution images for Retina displays */
+/* Media queries for high-resolution images (Retina displays) */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     body {
         background-image: url('background1@2x.jpg'); /* Use higher resolution image for retina displays */
     }
+}
+
+/* Add specific rules for sections with background images */
+.section-background1 {
+    background-image: url('background1.jpg');
+}
+
+.section-background2 {
+    background-image: url('background2.jpg');
+}
+
+.section-background3 {
+    background-image: url('background3.jpg');
+}
+
+.section-background4 {
+    background-image: url('background4.jpg');
 }
