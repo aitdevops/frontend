@@ -36,6 +36,14 @@ jobs:
         docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }} -f frontend/Dockerfile ./frontend
         docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
 
+    - name: Uninstall existing NGINX Ingress controller
+      run: |
+        helm uninstall ingress-nginx -n ingress-nginx || true
+
+    - name: Uninstall existing cert-manager
+      run: |
+        helm uninstall cert-manager -n cert-manager || true
+
     - name: Deploy NGINX Ingress controller
       run: |
         helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
