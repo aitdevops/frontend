@@ -1,0 +1,42 @@
+name: Deploy Frontend to GKE
+
+on:
+  push:
+    branches:
+      - frontend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Google Cloud auth
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.PROJECT_ID }}
+        install_components: kubectl
+
+    - name: Configure kubectl
+      run: |
+        gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
+
+    - name: Configure Docker for GCP
+      run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+    - name: Build and push frontend image
+      run: |
+        docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }} -f frontend/Dockerfile ./frontend
+        docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
+
+    - name: Deploy to GKE
+      run: |
+        kubectl set image deployment/frontend-deployment frontend=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
+        kubectl rollout status deployment/frontend-deployment
