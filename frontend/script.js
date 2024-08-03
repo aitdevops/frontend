@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach((section, index) => {
             const offset = section.offsetTop;
             if (scrollPosition >= offset - window.innerHeight && scrollPosition < offset + section.offsetHeight) {
-                document.body.style.backgroundImage = `url('background${index + 1}.jpg')`;
+                document.body.style.backgroundImage = `url('background${index + 1}.webp')`;
             }
         });
     });

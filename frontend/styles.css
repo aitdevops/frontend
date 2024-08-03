@@ -2,16 +2,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('background1.jpg') no-repeat center center fixed;
-    background-size: cover;
     color: white;
     text-align: center;
     height: 100vh;
     overflow: auto;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 header {
@@ -30,22 +24,84 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 0;
 }
 
 section {
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 20px 0;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    min-height: 100vh; /* Ensure sections take full viewport height */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#section1 {
+    background-image: url('background1.webp');
+}
+
+#section2 {
+    background-image: url('background2.webp');
+}
+
+#section3 {
+    background-image: url('background3.webp');
+}
+
+#section4 {
+    background-image: url('background4.webp');
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+    backdrop-filter: blur(10px); /* Background blur */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    width: 80%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
     font-size: 1.8em;
     text-shadow: 2px 2px 4px #000;
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .overlay {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+/* High-resolution images for Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #section1 {
+        background-image: url('background1@2x.webp');
+    }
+
+    #section2 {
+        background-image: url('background2@2x.webp');
+    }
+
+    #section3 {
+        background-image: url('background3@2x.webp');
+    }
+
+    #section4 {
+        background-image: url('background4@2x.webp');
+    }
 }
