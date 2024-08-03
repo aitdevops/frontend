@@ -14,7 +14,7 @@ body {
 
 header {
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
+    padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
@@ -22,9 +22,10 @@ header {
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     margin: 0;
     text-shadow: 2px 2px 4px #000;
+    flex: 1;
 }
 
 .linkedin-icon {
@@ -92,12 +93,18 @@ html {
 }
 
 @media (max-width: 600px) {
-    body {
-        background-size: cover;
+    header {
+        flex-direction: column;
+        padding: 10px;
     }
 
     h1 {
-        font-size: 2em;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .linkedin-icon {
+        font-size: 1.2em;
     }
 
     .overlay {
