@@ -38,5 +38,6 @@ jobs:
 
     - name: Deploy to GKE
       run: |
-        kubectl set image deployment/frontend-deployment frontend=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
-        kubectl rollout status deployment/frontend-deployment
+        gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
+        helm upgrade --install aitdevops-site ./charts/aitdevops-site \
+          --set image.tag=${{ github.sha }}
