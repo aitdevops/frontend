@@ -10,7 +10,6 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
 }
 
 header {
@@ -42,8 +41,8 @@ section {
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
-    backdrop-filter: blur(10px); /* Background blur */
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     padding: 20px;
     max-width: 600px;

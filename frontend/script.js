@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Apply initial background image
     const sections = document.querySelectorAll('section');
+    // Apply initial background image
     document.body.style.backgroundImage = `url('${sections[0].dataset.bg}')`;
 
     // Parallax effect
