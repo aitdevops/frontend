@@ -2,10 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-size: cover;
     color: white;
     text-align: center;
     height: 100vh;
     overflow: auto;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header {
@@ -24,7 +29,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0;
+    padding: 20px;
 }
 
 section {
@@ -34,26 +39,6 @@ section {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-#section1 {
-    background-image: url('background1.webp');
-}
-
-#section2 {
-    background-image: url('background2.webp');
-}
-
-#section3 {
-    background-image: url('background3.webp');
-}
-
-#section4 {
-    background-image: url('background4.webp');
 }
 
 .overlay {
@@ -73,6 +58,10 @@ h2 {
 
 /* Media queries for mobile devices */
 @media (max-width: 768px) {
+    body {
+        background-size: auto 100%; /* Adjust background size for mobile */
+    }
+
     h1 {
         font-size: 2em;
     }
@@ -89,19 +78,7 @@ h2 {
 
 /* High-resolution images for Retina displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    #section1 {
-        background-image: url('background1@2x.webp');
-    }
-
-    #section2 {
-        background-image: url('background2@2x.webp');
-    }
-
-    #section3 {
-        background-image: url('background3@2x.webp');
-    }
-
-    #section4 {
-        background-image: url('background4@2x.webp');
+    body {
+        background-image: url('background1@2x.jpg'); /* Use higher resolution image for retina displays */
     }
 }
