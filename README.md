@@ -13,8 +13,11 @@ Implementing GitOps practices with Argo CD and Flux for automated deployments.
 
 🔹 Key Projects
 Planet DDS: Managed GCP resources with Terraform, orchestrated containerized applications with GKE, and implemented CI/CD pipelines with Tekton and Jenkins.
+
 Dovetail Dental Management Software: Developed AWS architecture with EKS and Aurora DB, and implemented GitOps with ArgoCD.
+
 Ruckify Rental E-Commerce: Led Docker and Kubernetes implementation, designed Terraform templates for Azure, and developed CI/CD pipelines with Azure DevOps and GitHub Actions.
+
 Nucast.io: Built a decentralized video-streaming platform using blockchain technology, implemented CI/CD for Web3 development, and orchestrated containerized deployments with Kubernetes.
 
 
