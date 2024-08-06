@@ -1,29 +1,29 @@
-# aitdevops-gke
+Rajeev Kumar Koppisetti
+👋 Welcome to my GitHub!
 
-## Technologies Used
+🔹 About Me
+DevOps Engineer | GitOps Enthusiast | SysOps Specialist
+Over 7 years of experience in DevOps, GitOps, and Site Reliability Engineering.
+Expert in cloud solutions on AWS, Azure, and GCP, using Terraform, CloudFormation, and Azure ARM for Infrastructure as Code.
+Proficient in Kubernetes for deployment and management of containerized applications on EKS, AKS, and GKE.
+Skilled in CI/CD pipelines with Tekton, Azure DevOps, Jenkins, GitLab CI, and GitHub Actions.
+Strong background in networking, security practices, and managing Linux servers.
+Implementing GitOps practices with Argo CD and Flux for automated deployments.
 
-- **Google Kubernetes Engine (GKE)**: Managed Kubernetes service for deploying, managing, and scaling containerized applications.
-- **Helm**: Package manager for Kubernetes, used to define, install, and upgrade complex Kubernetes applications.
-- **GitHub Actions**: CI/CD tool integrated with GitHub for automating workflows, including building, testing, and deploying code.
-- **Flux**: GitOps tool for Kubernetes that synchronizes the state of your Kubernetes clusters with your Git repository.
-- **Docker**: Containerization platform used to package applications and their dependencies into containers.
-- **Google Artifact Registry**: Repository service for storing and managing container images.
-- **Google Cloud DNS**: Managed DNS service for publishing DNS zones and records.
 
-## Getting Started
+🔹 Key Projects
+Planet DDS: Managed GCP resources with Terraform, orchestrated containerized applications with GKE, and implemented CI/CD pipelines with Tekton and Jenkins.
+Dovetail Dental Management Software: Developed AWS architecture with EKS and Aurora DB, and implemented GitOps with ArgoCD.
+Ruckify Rental E-Commerce: Led Docker and Kubernetes implementation, designed Terraform templates for Azure, and developed CI/CD pipelines with Azure DevOps and GitHub Actions.
+Nucast.io: Built a decentralized video-streaming platform using blockchain technology, implemented CI/CD for Web3 development, and orchestrated containerized deployments with Kubernetes.
 
-### Prerequisites
 
-- Docker
-- Google Cloud SDK
-- Helm
-- kubectl
-- GitHub account with access to the repository
 
-### Setting Up
-
-1. **Clone the repository**:
-   ```sh
-   git clone https://github.com/<your-github-username>/e-commerce.git
-   cd e-commerce
-
+🔹 Technical Skills
+Cloud Platforms: AWS, Azure, GCP
+IaC Tools: Terraform, CloudFormation, Azure ARM
+CI/CD Tools: Tekton, Azure DevOps, Jenkins, GitLab CI, GitHub Actions
+Container Technologies: Docker, Kubernetes, OpenShift
+Programming Languages: Bash, Shell, Python, Groovy
+Monitoring & Security: Prometheus, Grafana, Nagios, Splunk, Istio
+Databases: MySQL, PostgreSQL, MongoDB, DynamoDB
