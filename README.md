@@ -12,6 +12,7 @@ Implementing GitOps practices with Argo CD and Flux for automated deployments.
 
 
 🔹 Key Projects
+
 Planet DDS: Managed GCP resources with Terraform, orchestrated containerized applications with GKE, and implemented CI/CD pipelines with Tekton and Jenkins.
 
 Dovetail Dental Management Software: Developed AWS architecture with EKS and Aurora DB, and implemented GitOps with ArgoCD.
