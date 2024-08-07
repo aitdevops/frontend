@@ -18,6 +18,7 @@
 - Google Cloud SDK
 - Helm
 - kubectl
+- CRDS
 - GitHub account with access to the repository
 
 ### Setting Up
