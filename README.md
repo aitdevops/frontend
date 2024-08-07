@@ -1,4 +1,3 @@
-Rajeev Kumar Koppisetti
 👋 Welcome to my GitHub!
 
 🔹 About Me
