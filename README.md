@@ -9,6 +9,8 @@
 - **Docker**: Containerization platform used to package applications and their dependencies into containers.
 - **Google Artifact Registry**: Repository service for storing and managing container images.
 - **Google Cloud DNS**: Managed DNS service for publishing DNS zones and records.
+- **ingress-nginx**: Managed external access to your services in a Kubernetes cluster.
+- **cert-manager**: Manged ssl certificate services in a Kubernetes cluster.
 
 ## Getting Started
 
