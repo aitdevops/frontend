@@ -49,6 +49,10 @@ jobs:
           cd argocd
           git checkout -b update-image
 
+      - name: List files in the repository
+        run: |
+          ls -R
+
       - name: Update Helm values
         run: |
           sed -i 's|tag:.*|tag: '${{ github.sha }}'|g' charts/aitdevops-site/values.yaml
