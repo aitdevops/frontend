@@ -1,4 +1,4 @@
-name: Update Helm Values and Push Changes
+name: Build and Push Frontend Image, Update Helm Values
 
 on:
   push:
@@ -6,12 +6,31 @@ on:
       - main
 
 jobs:
-  update-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set up Google Cloud auth
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.PROJECT_ID }}
+          install_components: kubectl
+
+      - name: Configure Docker for GCP
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }} -f frontend/Dockerfile ./frontend
+          docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
 
       - name: Configure git
         run: |
@@ -26,17 +45,14 @@ jobs:
 
       - name: List files in the repository
         run: |
-          cd argocd
           ls -R
 
       - name: Update Helm values
         run: |
-          cd argocd
           sed -i 's|tag:.*|tag: '${{ github.sha }}'|g' charts/aitdevops-site/values.yaml
           git add charts/aitdevops-site/values.yaml
           git commit -m "Update frontend image to ${{ github.sha }}"
 
       - name: Push changes
         run: |
-          cd argocd
           git push https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git main
