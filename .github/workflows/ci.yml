@@ -1,0 +1,80 @@
+name: Deploy Frontend to GKE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud auth
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.PROJECT_ID }}
+          install_components: kubectl
+
+      - name: Configure kubectl
+        run: |
+          gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
+
+      - name: Configure Docker for GCP
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }} -f frontend/Dockerfile ./frontend
+          docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
+
+      - name: Configure git
+        run: |
+          git config --global user.email "rajeevkoppisetti21@gmail.com"
+          git config --global user.name "aitdevops"
+
+      - name: Clone argocd repo
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git clone https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git
+          cd argocd
+          git checkout -b update-image
+
+      - name: List files in the repository
+        run: |
+          ls -R
+
+      - name: Update Helm values
+        run: |
+          cd argocd
+          sed -i 's|tag:.*|tag: '${{ github.sha }}'|g' charts/aitdevops-site/values.yaml
+          git add charts/aitdevops-site/values.yaml
+          git commit -m "Update frontend image to ${{ github.sha }}"
+          git branch -M update-image
+
+      - name: Push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          cd argocd
+          git push https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git update-image
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: "Update frontend image to ${{ github.sha }}"
+          title: "Update frontend image"
+          body: "This PR updates the frontend Docker image to ${{ github.sha }}."
+          branch: update-image
+          labels: |
+            update
