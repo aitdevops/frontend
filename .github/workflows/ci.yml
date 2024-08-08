@@ -45,14 +45,17 @@ jobs:
 
       - name: List files in the repository
         run: |
+          cd argocd
           ls -R
 
       - name: Update Helm values
         run: |
+          cd argocd
           sed -i 's|tag:.*|tag: '${{ github.sha }}'|g' charts/aitdevops-site/values.yaml
           git add charts/aitdevops-site/values.yaml
           git commit -m "Update frontend image to ${{ github.sha }}"
 
       - name: Push changes
         run: |
+          cd argocd
           git push https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git main
