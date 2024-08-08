@@ -45,11 +45,11 @@ jobs:
         run: |
           git clone https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git
           cd argocd
-          git checkout -b update-image || git checkout update-image
 
-      - name: Pull latest changes
+      - name: Check if branch exists
         run: |
-          git pull origin update-image
+          git fetch origin update-image || echo "Branch update-image does not exist"
+          git checkout update-image || git checkout -b update-image
 
       - name: List files in the repository
         run: |
