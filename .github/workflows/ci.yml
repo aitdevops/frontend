@@ -42,6 +42,8 @@ jobs:
           git config --global user.name "aitdevops"
 
       - name: Clone argocd repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git clone https://github.com/aitdevops/argocd.git
           cd argocd
@@ -53,11 +55,17 @@ jobs:
           sed -i 's|tag:.*|tag: '${{ github.sha }}'|g' charts/aitdevops-site/values.yaml
           git add charts/aitdevops-site/values.yaml
           git commit -m "Update frontend image to ${{ github.sha }}"
-          git push origin update-image
+
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git push https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git update-image
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ secrets.GH_TOKEN }}
           commit-message: "Update frontend image to ${{ github.sha }}"
           title: "Update frontend image"
           body: "This PR updates the frontend Docker image to ${{ github.sha }}."
