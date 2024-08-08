@@ -59,11 +59,13 @@ jobs:
           sed -i 's|tag:.*|tag: '${{ github.sha }}'|g' charts/aitdevops-site/values.yaml
           git add charts/aitdevops-site/values.yaml
           git commit -m "Update frontend image to ${{ github.sha }}"
+          git branch -M update-image
 
       - name: Push changes
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+          cd argocd
           git push https://${{ secrets.GH_TOKEN }}@github.com/aitdevops/argocd.git update-image
 
       - name: Create Pull Request
