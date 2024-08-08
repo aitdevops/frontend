@@ -35,9 +35,3 @@ jobs:
       run: |
         docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }} -f frontend/Dockerfile ./frontend
         docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/aitdevops-gke/frontend:${{ github.sha }}
-
-    - name: Deploy to GKE
-      run: |
-        gcloud container clusters get-credentials ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION }} --project ${{ secrets.PROJECT_ID }}
-        helm upgrade --install aitdevops-site ./charts/aitdevops-site \
-          --set image.tag=${{ github.sha }}
