@@ -1,0 +1,9 @@
+controller:
+  service:
+    type: LoadBalancer
+    annotations:
+      cloud.google.com/neg: '{"ingress": true}'
+  admissionWebhooks:
+    enabled: true
+    patch:
+      enabled: true
