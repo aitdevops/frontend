@@ -9,13 +9,34 @@
 </head>
 <body>
     <header>
-        <h1>undercoding &#8734</h1>
+        <h1>undercoding &#8734;</h1>
         <a href="https://www.linkedin.com/in/rajeev-koppisetti/" target="_blank" class="linkedin-icon">
             <i class="fab fa-linkedin"></i>
         </a>
+        <button onclick="showLoginForm()">Login</button>
+        <button onclick="showSignUpForm()">Sign Up</button>
     </header>
 
     <main>
+        <div id="login-form" style="display:none;">
+            <h2>Login</h2>
+            <form id="login">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div id="signup-form" style="display:none;">
+            <h2>Sign Up</h2>
+            <form id="signup">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+
         <section id="section1" class="content section-background1" data-bg="background1.jpg">
             <div class="overlay">
                 <h2>Welcome</h2>
@@ -40,7 +61,7 @@
         <section id="section4" class="content section-background4" data-bg="background4.jpg">
             <div class="overlay">
                 <h2>About me</h2>
-                <p>DevOps-Engineer.</p>
+                <p></p>
             </div>
         </section>
     </main>

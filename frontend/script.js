@@ -32,3 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function showLoginForm() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('signup-form').style.display = 'none';
+}
+
+function showSignUpForm() {
+    document.getElementById('signup-form').style.display = 'block';
+    document.getElementById('login-form').style.display = 'none';
+}
