@@ -31,11 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
-
-    // Check if the user is already logged in
-    if (localStorage.getItem('authToken')) {
-        showBlueprintsPage();
-    }
 });
 
 function showLoginForm() {
@@ -49,7 +44,7 @@ function showSignUpForm() {
 }
 
 function login(event) {
-    event.preventDefault(); // Prevent form from submitting the default way
+    event.preventDefault();
 
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
@@ -64,10 +59,11 @@ function login(event) {
     .then(response => response.json())
     .then(data => {
         if (data.token) {
-            // Store the token for subsequent requests
             localStorage.setItem('authToken', data.token);
             alert('Login successful!');
-            showBlueprintsPage();
+            document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('protected-section').style.display = 'block';
+            document.body.style.backgroundImage = "url('protected-background.jpg')";
         } else {
             alert('Login failed: ' + data.message);
         }
@@ -76,7 +72,7 @@ function login(event) {
 }
 
 function signup(event) {
-    event.preventDefault(); // Prevent form from submitting the default way
+    event.preventDefault();
 
     const username = document.getElementById('signup-username').value;
     const email = document.getElementById('signup-email').value;
@@ -96,24 +92,14 @@ function signup(event) {
     .catch(error => console.error('Error:', error));
 }
 
-function showBlueprintsPage() {
-    document.getElementById('welcome-section').style.display = 'none';
-    document.getElementById('about-section').style.display = 'none';
-    document.getElementById('blueprints-section').style.display = 'block';
-
-    // Update background image to blueprint background
-    document.body.style.backgroundImage = "url('images/blueprints-background.jpg')";
-
-    // Show logout button
-    document.getElementById('logout-button').style.display = 'block';
-
-    // Hide login and sign-up buttons
-    document.querySelector('.auth-buttons button[onclick="showLoginForm()"]').style.display = 'none';
-    document.querySelector('.auth-buttons button[onclick="showSignUpForm()"]').style.display = 'none';
+function signOut() {
+    localStorage.removeItem('authToken');
+    document.getElementById('welcome-section').style.display = 'block';
+    document.getElementById('protected-section').style.display = 'none';
+    document.body.style.backgroundImage = "url('background1.jpg')";
+    alert('Signed out successfully!');
 }
 
-function logout() {
-    localStorage.removeItem('authToken');
-    alert('Logged out successfully!');
-    location.reload(); // Reload the page to reset the view
+function showBlueprints() {
+    // Logic to display blueprints goes here
 }

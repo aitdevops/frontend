@@ -16,7 +16,7 @@
         <div class="auth-buttons">
             <button onclick="showLoginForm()">Login</button>
             <button onclick="showSignUpForm()">Sign Up</button>
-            <button id="logout-button" style="display:none;" onclick="logout()">Logout</button>
+            <button onclick="signOut()">Sign Out</button>
         </div>
     </header>
 
@@ -40,24 +40,18 @@
             </form>
         </div>
 
-        <section id="welcome-section" class="content section-background1" data-bg="images/background-1.jpg">
+        <section id="welcome-section" class="content section-background1" data-bg="background1.jpg">
             <div class="overlay">
                 <h2>Welcome</h2>
                 <p>Your gateway to innovative solutions and shared experiences. Dive in to explore what we have to offer!</p>
             </div>
         </section>
 
-        <section id="about-section" class="content section-background2" data-bg="images/background-2.jpg">
+        <section id="protected-section" class="content section-background-protected" style="display:none;" data-bg="protected-background.jpg">
             <div class="overlay">
-                <h2>About Me</h2>
-                <p>Jaddu.</p>
-            </div>
-        </section>
-
-        <section id="blueprints-section" style="display:none;" class="content section-background-blueprints" data-bg="images/blueprints-background.jpg">
-            <div class="overlay">
-                <h2>Blueprints</h2>
-                <p>Explore your project blueprints here.</p>
+                <h2>Protected Area</h2>
+                <p>Explore the blueprint of innovation and excellence.</p>
+                <button onclick="showBlueprints()">Show Blueprints</button>
             </div>
         </section>
     </main>
