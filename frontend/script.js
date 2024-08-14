@@ -37,12 +37,16 @@ function showLoginForm() {
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('protected-content').style.display = 'none';
+    document.getElementById('welcome-section').style.display = 'block';
+    document.getElementById('about-section').style.display = 'block';
 }
 
 function showSignUpForm() {
     document.getElementById('signup-form').style.display = 'block';
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('protected-content').style.display = 'none';
+    document.getElementById('welcome-section').style.display = 'block';
+    document.getElementById('about-section').style.display = 'block';
 }
 
 function login(event) {
@@ -63,7 +67,7 @@ function login(event) {
         if (data.token) {
             // Store the token for subsequent requests
             localStorage.setItem('authToken', data.token);
-            handleLoginSuccess(data.token);
+            handleLoginSuccess();
         } else {
             alert('Login failed: ' + data.message);
         }
@@ -71,10 +75,12 @@ function login(event) {
     .catch(error => console.error('Error:', error));
 }
 
-function handleLoginSuccess(token) {
+function handleLoginSuccess() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('protected-content').style.display = 'block';
+    document.getElementById('welcome-section').style.display = 'none';
+    document.getElementById('about-section').style.display = 'none';
     document.body.style.backgroundImage = `url('protected-background.jpg')`;
 }
 
