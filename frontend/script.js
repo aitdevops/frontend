@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const backToTopButton = document.getElementById('back-to-top');
 
-    // Apply initial background image
+    // Set the initial background to the welcome section
     document.body.style.backgroundImage = `url('${sections[0].dataset.bg}')`;
 
     // Parallax effect
@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+
+    // Check if user is already logged in
+    if (localStorage.getItem('authToken')) {
+        handleLoginSuccess();
+    }
 });
 
 function showLoginForm() {
@@ -39,6 +44,8 @@ function showLoginForm() {
     document.getElementById('protected-content').style.display = 'none';
     document.getElementById('welcome-section').style.display = 'block';
     document.getElementById('about-section').style.display = 'block';
+    document.getElementById('login-button').style.display = 'block';
+    document.getElementById('signout-button').style.display = 'none';
 }
 
 function showSignUpForm() {
@@ -47,6 +54,8 @@ function showSignUpForm() {
     document.getElementById('protected-content').style.display = 'none';
     document.getElementById('welcome-section').style.display = 'block';
     document.getElementById('about-section').style.display = 'block';
+    document.getElementById('login-button').style.display = 'block';
+    document.getElementById('signout-button').style.display = 'none';
 }
 
 function login(event) {
@@ -82,6 +91,20 @@ function handleLoginSuccess() {
     document.getElementById('welcome-section').style.display = 'none';
     document.getElementById('about-section').style.display = 'none';
     document.body.style.backgroundImage = `url('protected-background.jpg')`;
+
+    document.getElementById('login-button').style.display = 'none';
+    document.getElementById('signout-button').style.display = 'block';
+}
+
+function signOut() {
+    localStorage.removeItem('authToken');
+    document.getElementById('protected-content').style.display = 'none';
+    document.getElementById('welcome-section').style.display = 'block';
+    document.getElementById('about-section').style.display = 'block';
+    document.body.style.backgroundImage = `url('background1.jpg')`;
+
+    document.getElementById('login-button').style.display = 'block';
+    document.getElementById('signout-button').style.display = 'none';
 }
 
 function signup(event) {
