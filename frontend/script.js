@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const backToTopButton = document.getElementById('back-to-top');
-    
+
     // Apply initial background image
     document.body.style.backgroundImage = `url('${sections[0].dataset.bg}')`;
 
@@ -41,4 +41,51 @@ function showLoginForm() {
 function showSignUpForm() {
     document.getElementById('signup-form').style.display = 'block';
     document.getElementById('login-form').style.display = 'none';
+}
+
+function login(event) {
+    event.preventDefault(); // Prevent form from submitting the default way
+
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    fetch('https://auth.aitdevops.com/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.token) {
+            // Store the token for subsequent requests
+            localStorage.setItem('authToken', data.token);
+            alert('Login successful!');
+        } else {
+            alert('Login failed: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function signup(event) {
+    event.preventDefault(); // Prevent form from submitting the default way
+
+    const username = document.getElementById('signup-username').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    fetch('https://user.aitdevops.com/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Signup successful: ' + data.message);
+    })
+    .catch(error => console.error('Error:', error));
 }
