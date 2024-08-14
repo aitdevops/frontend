@@ -2,10 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const backToTopButton = document.getElementById('back-to-top');
 
-    // Apply initial background image
     document.body.style.backgroundImage = `url('${sections[0].dataset.bg}')`;
 
-    // Parallax effect
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
 
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Show/hide back-to-top button
         if (scrollPosition > 300) {
             backToTopButton.style.display = 'block';
         } else {
@@ -24,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Scroll to top
     backToTopButton.addEventListener('click', function() {
         window.scrollTo({
             top: 0,
@@ -61,8 +57,17 @@ function login(event) {
         if (data.token) {
             localStorage.setItem('authToken', data.token);
             alert('Login successful!');
+
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-btn').style.display = 'none';
+            document.getElementById('signup-btn').style.display = 'none';
+            document.getElementById('signout-btn').style.display = 'block';
+
             document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
             document.getElementById('protected-section').style.display = 'block';
+
             document.body.style.backgroundImage = "url('protected-background.jpg')";
         } else {
             alert('Login failed: ' + data.message);
@@ -95,11 +100,17 @@ function signup(event) {
 function signOut() {
     localStorage.removeItem('authToken');
     document.getElementById('welcome-section').style.display = 'block';
+    document.getElementById('about-section').style.display = 'block';
     document.getElementById('protected-section').style.display = 'none';
+
+    document.getElementById('login-btn').style.display = 'block';
+    document.getElementById('signup-btn').style.display = 'block';
+    document.getElementById('signout-btn').style.display = 'none';
+
     document.body.style.backgroundImage = "url('background1.jpg')";
     alert('Signed out successfully!');
 }
 
 function showBlueprints() {
-    // Logic to display blueprints goes here
+    alert("Blueprints would be shown here.");
 }

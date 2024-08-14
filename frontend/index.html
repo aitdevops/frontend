@@ -14,14 +14,14 @@
         </a>
         <h1>undercoding &#8734;</h1>
         <div class="auth-buttons">
-            <button onclick="showLoginForm()">Login</button>
-            <button onclick="showSignUpForm()">Sign Up</button>
-            <button onclick="signOut()">Sign Out</button>
+            <button id="login-btn" onclick="showLoginForm()">Login</button>
+            <button id="signup-btn" onclick="showSignUpForm()">Sign Up</button>
+            <button id="signout-btn" style="display:none;" onclick="signOut()">Sign Out</button>
         </div>
     </header>
 
     <main>
-        <div id="login-form" style="display:none;">
+        <div id="login-form" class="auth-form" style="display:none;">
             <h2>Login</h2>
             <form id="login" onsubmit="login(event)">
                 <input type="email" id="login-email" placeholder="Email" required>
@@ -30,7 +30,7 @@
             </form>
         </div>
 
-        <div id="signup-form" style="display:none;">
+        <div id="signup-form" class="auth-form" style="display:none;">
             <h2>Sign Up</h2>
             <form id="signup" onsubmit="signup(event)">
                 <input type="text" id="signup-username" placeholder="Username" required>
@@ -47,10 +47,17 @@
             </div>
         </section>
 
+        <section id="about-section" class="content section-background2" data-bg="background2.jpg">
+            <div class="overlay">
+                <h2>About Me</h2>
+                <p>Jadoo.</p>
+            </div>
+        </section>
+
         <section id="protected-section" class="content section-background-protected" style="display:none;" data-bg="protected-background.jpg">
             <div class="overlay">
                 <h2>Protected Area</h2>
-                <p>Explore the blueprint of innovation and excellence.</p>
+                <p>Explore the blueprint of my site.</p>
                 <button onclick="showBlueprints()">Show Blueprints</button>
             </div>
         </section>
