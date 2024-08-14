@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const backToTopButton = document.getElementById('back-to-top');
 
-    document.body.style.backgroundImage = url('${sections[0].dataset.bg}');
+    document.body.style.backgroundImage = `url('${sections[0].dataset.bg}')`;
 
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach((section, index) => {
             const offset = section.offsetTop;
             if (scrollPosition >= offset - window.innerHeight && scrollPosition < offset + section.offsetHeight) {
-                document.body.style.backgroundImage = url('${section.dataset.bg}');
+                document.body.style.backgroundImage = `url('${section.dataset.bg}')`;
             }
         });
 
