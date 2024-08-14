@@ -113,6 +113,19 @@ html {
     scroll-behavior: smooth;
 }
 
+.section-background-protected {
+    background-image: url('protected-background.jpg');
+}
+
+#protected-content {
+    display: none;
+}
+
+#blueprint {
+    display: none;
+    margin-top: 20px;
+}
+
 @media (max-width: 600px) {
     header {
         flex-direction: column;

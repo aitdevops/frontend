@@ -36,11 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function showLoginForm() {
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('protected-content').style.display = 'none';
 }
 
 function showSignUpForm() {
     document.getElementById('signup-form').style.display = 'block';
     document.getElementById('login-form').style.display = 'none';
+    document.getElementById('protected-content').style.display = 'none';
 }
 
 function login(event) {
@@ -61,12 +63,19 @@ function login(event) {
         if (data.token) {
             // Store the token for subsequent requests
             localStorage.setItem('authToken', data.token);
-            alert('Login successful!');
+            handleLoginSuccess(data.token);
         } else {
             alert('Login failed: ' + data.message);
         }
     })
     .catch(error => console.error('Error:', error));
+}
+
+function handleLoginSuccess(token) {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('protected-content').style.display = 'block';
+    document.body.style.backgroundImage = `url('protected-background.jpg')`;
 }
 
 function signup(event) {
@@ -88,4 +97,8 @@ function signup(event) {
         alert('Signup successful: ' + data.message);
     })
     .catch(error => console.error('Error:', error));
+}
+
+function displayBlueprint() {
+    document.getElementById('blueprint').style.display = 'block';
 }
