@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    checkLoginState();
+    // Check if the user is already logged in
+    if (localStorage.getItem('authToken')) {
+        showBlueprintsPage();
+    }
 });
 
 function showLoginForm() {
@@ -61,10 +64,10 @@ function login(event) {
     .then(response => response.json())
     .then(data => {
         if (data.token) {
+            // Store the token for subsequent requests
             localStorage.setItem('authToken', data.token);
             alert('Login successful!');
-            // Show the protected page
-            showProtectedPage();
+            showBlueprintsPage();
         } else {
             alert('Login failed: ' + data.message);
         }
@@ -93,26 +96,24 @@ function signup(event) {
     .catch(error => console.error('Error:', error));
 }
 
-function showProtectedPage() {
-    document.getElementById('section1').style.display = 'none';
-    document.getElementById('section2').style.display = 'none';
+function showBlueprintsPage() {
+    document.getElementById('welcome-section').style.display = 'none';
+    document.getElementById('about-section').style.display = 'none';
     document.getElementById('blueprints-section').style.display = 'block';
 
-    document.body.style.backgroundImage = `url('blueprints-background.jpg')`;
+    // Update background image to blueprint background
+    document.body.style.backgroundImage = "url('images/blueprints-background.jpg')";
 
-    document.getElementById('loginButton').style.display = 'none';
-    document.getElementById('signupButton').style.display = 'none';
-    document.getElementById('signoutButton').style.display = 'block';
+    // Show logout button
+    document.getElementById('logout-button').style.display = 'block';
+
+    // Hide login and sign-up buttons
+    document.querySelector('.auth-buttons button[onclick="showLoginForm()"]').style.display = 'none';
+    document.querySelector('.auth-buttons button[onclick="showSignUpForm()"]').style.display = 'none';
 }
 
-function signOut() {
+function logout() {
     localStorage.removeItem('authToken');
-    location.reload(); // Reload the page to go back to the welcome state
-}
-
-function checkLoginState() {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-        showProtectedPage();
-    }
+    alert('Logged out successfully!');
+    location.reload(); // Reload the page to reset the view
 }

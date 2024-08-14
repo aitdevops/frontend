@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Effect</title>
+    <title>AITDevOps</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -14,9 +14,9 @@
         </a>
         <h1>undercoding &#8734;</h1>
         <div class="auth-buttons">
-            <button id="loginButton" onclick="showLoginForm()">Login</button>
-            <button id="signupButton" onclick="showSignUpForm()">Sign Up</button>
-            <button id="signoutButton" onclick="signOut()" style="display:none;">Sign Out</button>
+            <button onclick="showLoginForm()">Login</button>
+            <button onclick="showSignUpForm()">Sign Up</button>
+            <button id="logout-button" style="display:none;" onclick="logout()">Logout</button>
         </div>
     </header>
 
@@ -40,21 +40,21 @@
             </form>
         </div>
 
-        <section id="section1" class="content section-background1" data-bg="background-1.jpg">
+        <section id="welcome-section" class="content section-background1" data-bg="images/background-1.jpg">
             <div class="overlay">
                 <h2>Welcome</h2>
                 <p>Your gateway to innovative solutions and shared experiences. Dive in to explore what we have to offer!</p>
             </div>
         </section>
 
-        <section id="section2" class="content section-background2" data-bg="background-2.jpg">
+        <section id="about-section" class="content section-background2" data-bg="images/background-2.jpg">
             <div class="overlay">
                 <h2>About Me</h2>
                 <p>Jaddu.</p>
             </div>
         </section>
 
-        <section id="blueprints-section" style="display:none;" class="content section-background-blueprints" data-bg="blueprints-background.jpg">
+        <section id="blueprints-section" style="display:none;" class="content section-background-blueprints" data-bg="images/blueprints-background.jpg">
             <div class="overlay">
                 <h2>Blueprints</h2>
                 <p>Explore your project blueprints here.</p>
