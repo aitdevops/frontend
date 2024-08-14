@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const backToTopButton = document.getElementById('back-to-top');
+    const welcomeSection = document.getElementById('welcome-section');
+    const aboutSection = document.getElementById('about-section');
+    const protectedSection = document.getElementById('protected-section');
+    const loginBtn = document.getElementById('login-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const signoutBtn = document.getElementById('signout-btn');
 
     document.body.style.backgroundImage = `url('${sections[0].dataset.bg}')`;
 
@@ -27,90 +33,92 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+
+    function resetLayout() {
+        welcomeSection.style.display = 'block';
+        aboutSection.style.display = 'block';
+        protectedSection.style.display = 'none';
+        loginBtn.style.display = 'block';
+        signupBtn.style.display = 'block';
+        signoutBtn.style.display = 'none';
+        document.body.style.backgroundImage = "url('background1.jpg')";
+    }
+
+    function switchToProtectedView() {
+        welcomeSection.style.display = 'none';
+        aboutSection.style.display = 'none';
+        protectedSection.style.display = 'block';
+        loginBtn.style.display = 'none';
+        signupBtn.style.display = 'none';
+        signoutBtn.style.display = 'block';
+        document.body.style.backgroundImage = "url('protected-background.jpg')";
+    }
+
+    window.showLoginForm = function() {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('signup-form').style.display = 'none';
+    };
+
+    window.showSignUpForm = function() {
+        document.getElementById('signup-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none';
+    };
+
+    window.login = function(event) {
+        event.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        fetch('https://auth.aitdevops.com/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                localStorage.setItem('authToken', data.token);
+                alert('Login successful!');
+                switchToProtectedView();
+            } else {
+                alert('Login failed: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    };
+
+    window.signup = function(event) {
+        event.preventDefault();
+        const username = document.getElementById('signup-username').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        fetch('https://user.aitdevops.com/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Signup successful: ' + data.message);
+        })
+        .catch(error => console.error('Error:', error));
+    };
+
+    window.signOut = function() {
+        localStorage.removeItem('authToken');
+        resetLayout();
+        alert('Signed out successfully!');
+    };
+
+    window.showBlueprints = function() {
+        alert("Blueprints would be shown here.");
+    };
+
+    // Check if user is logged in (token exists)
+    if (localStorage.getItem('authToken')) {
+        switchToProtectedView();
+    } else {
+        resetLayout();
+    }
 });
-
-function showLoginForm() {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('signup-form').style.display = 'none';
-}
-
-function showSignUpForm() {
-    document.getElementById('signup-form').style.display = 'block';
-    document.getElementById('login-form').style.display = 'none';
-}
-
-function login(event) {
-    event.preventDefault();
-
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-
-    fetch('https://auth.aitdevops.com/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.token) {
-            localStorage.setItem('authToken', data.token);
-            alert('Login successful!');
-
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('signup-form').style.display = 'none';
-            document.getElementById('login-btn').style.display = 'none';
-            document.getElementById('signup-btn').style.display = 'none';
-            document.getElementById('signout-btn').style.display = 'block';
-
-            document.getElementById('welcome-section').style.display = 'none';
-            document.getElementById('about-section').style.display = 'none';
-            document.getElementById('protected-section').style.display = 'block';
-
-            document.body.style.backgroundImage = "url('protected-background.jpg')";
-        } else {
-            alert('Login failed: ' + data.message);
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-function signup(event) {
-    event.preventDefault();
-
-    const username = document.getElementById('signup-username').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-
-    fetch('https://user.aitdevops.com/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, email, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Signup successful: ' + data.message);
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-function signOut() {
-    localStorage.removeItem('authToken');
-    document.getElementById('welcome-section').style.display = 'block';
-    document.getElementById('about-section').style.display = 'block';
-    document.getElementById('protected-section').style.display = 'none';
-
-    document.getElementById('login-btn').style.display = 'block';
-    document.getElementById('signup-btn').style.display = 'block';
-    document.getElementById('signout-btn').style.display = 'none';
-
-    document.body.style.backgroundImage = "url('background1.jpg')";
-    alert('Signed out successfully!');
-}
-
-function showBlueprints() {
-    alert("Blueprints would be shown here.");
-}
