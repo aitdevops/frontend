@@ -4,7 +4,6 @@ body {
     padding: 0;
     background-size: cover;
     color: white;
-    text-align: center;
     height: 100vh;
     overflow: auto;
     background-attachment: fixed;
@@ -12,8 +11,6 @@ body {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 header {
@@ -22,9 +19,8 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Ensure space between LinkedIn icon, title, and buttons */
     align-items: center;
-    position: relative;
 }
 
 .linkedin-icon {
@@ -32,8 +28,6 @@ header {
     font-size: 1.5em;
     text-decoration: none;
     transition: color 0.3s;
-    position: absolute;
-    left: 20px;
 }
 
 .linkedin-icon:hover {
@@ -44,13 +38,13 @@ h1 {
     font-size: 2em;
     margin: 0;
     text-shadow: 2px 2px 4px #000;
+    text-align: center;
+    flex-grow: 1;
 }
 
 .auth-buttons {
     display: flex;
     gap: 10px;
-    position: absolute;
-    right: 20px;
 }
 
 .auth-buttons button {
@@ -66,14 +60,6 @@ h1 {
 
 .auth-buttons button:hover {
     background-color: #005f8b;
-}
-
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-top: 50px;
 }
 
 main {
@@ -92,6 +78,7 @@ section {
     justify-content: center;
     align-items: center;
     position: relative;
+    text-align: center;
 }
 
 .overlay {
@@ -100,15 +87,15 @@ section {
     border-radius: 10px;
     padding: 20px;
     max-width: 600px;
-    width: 100%;
+    width: 100%;  /* Ensure it takes the full width of the section */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    margin: auto;
+    margin: auto;  /* Ensure the overlay is centered horizontally */
 }
 
 h2 {
     font-size: 1.8em;
     text-shadow: 2px 2px 4px #000;
+    margin-top: 0;
 }
 
 #back-to-top {
