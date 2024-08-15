@@ -112,6 +112,6 @@ function signOut() {
 }
 
 function showBlueprints() {
-    // Redirect to the local aitdevops.html file
-    window.location.href = "/aitdevops.html";  // Ensure this path is correct based on your server setup
+    // Redirect to the local architecture.html file
+    window.location.href = "/architecture.html";  // Ensure this path is correct based on your server setup
 }
