@@ -112,9 +112,6 @@ function signOut() {
 }
 
 function showBlueprints() {
-    var blueprintsContainer = document.getElementById('blueprints-container');
-    var blueprintsFrame = document.getElementById('blueprints-frame');
-
-    blueprintsFrame.src = "aitdevops.html";  // Update this path if the HTML file is in a different location
-    blueprintsContainer.style.display = 'block';
+    // Redirect to the full screen blueprint URL
+    window.location.href = "https://viewer.diagrams.net/#P%7B%22client%22%3A1%2C%22target%22%3A%22blank%22%2C%22edit%22%3A%22_blank%22%2C%22close%22%3A1%2C%22layers%22%3A1%2C%22nav%22%3A1%2C%22highlight%22%3A%220000ff%22%7D#%7B%22pageId%22%3A%22Qn7famoMGrUUKxRjcpnJ%22%7D";
 }
