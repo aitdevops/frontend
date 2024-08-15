@@ -56,7 +56,7 @@ header {
 h1 {
     font-size: 2em;
     margin: 0;
-    margin-left: 120px; /* Adjust this value to move the text to the right */
+    margin-left: 160px; /* Adjust this value to move the text to the right */
     /* or */
     margin-right: 20px; /* Adjust this value to move the text to the left */
     text-shadow: 2px 2px 4px #000;
