@@ -112,5 +112,9 @@ function signOut() {
 }
 
 function showBlueprints() {
-    alert("Blueprints would be shown here.");
+    var blueprintsContainer = document.getElementById('blueprints-container');
+    var blueprintsFrame = document.getElementById('blueprints-frame');
+
+    blueprintsFrame.src = "aitdevops.html";  // Update this path if the HTML file is in a different location
+    blueprintsContainer.style.display = 'block';
 }

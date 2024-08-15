@@ -90,10 +90,10 @@ section {
     border-radius: 10px;
     padding: 20px;
     max-width: 600px;
-    width: 100%;  /* Ensure it takes the full width of the section */
+    width: 100%;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
-    margin: auto;  /* Ensure the overlay is centered horizontally */
+    margin: auto;
 }
 
 h2 {
