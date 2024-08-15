@@ -1,70 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Specifies the document type as HTML5 and sets the language to English -->
     <meta charset="UTF-8">
+    <!-- Sets the character encoding to UTF-8 to support all text characters -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures the page is responsive and scales properly on different devices -->
     <title>AITDevOps</title>
+    <!-- Title of the webpage displayed on the browser tab -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Links to an external CSS file for styling the page -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Links to an external Font Awesome CSS for using icons -->
 </head>
 <body>
+    <!-- Body of the HTML document, containing all visible content -->
+
     <header>
+        <!-- Header section of the page -->
         <a href="https://www.linkedin.com/in/rajeev-koppisetti/" target="_blank" class="linkedin-icon">
             <i class="fab fa-linkedin"></i>
         </a>
+        <!-- LinkedIn icon that links to your LinkedIn profile and opens in a new tab -->
         <h1>undercoding &#8734;</h1>
+        <!-- Main title of the page, displaying the name with an infinity symbol -->
         <div class="auth-buttons">
+            <!-- Container for authentication buttons (Login, Sign Up, Sign Out) -->
             <button id="login-btn" onclick="showLoginForm()">Login</button>
+            <!-- Login button triggers a JavaScript function to show the login form -->
             <button id="signup-btn" onclick="showSignUpForm()">Sign Up</button>
+            <!-- Sign Up button triggers a JavaScript function to show the signup form -->
             <button id="signout-btn" style="display:none;" onclick="signOut()">Sign Out</button>
+            <!-- Sign Out button (initially hidden) triggers a JavaScript function to sign out -->
         </div>
     </header>
 
     <main>
+        <!-- Main content area of the page -->
         <div id="login-form" class="auth-form" style="display:none;">
+            <!-- Login form (initially hidden) -->
             <h2>Login</h2>
+            <!-- Header for the login form -->
             <form id="login" onsubmit="login(event)">
+                <!-- Form for login, submitting triggers the login function -->
                 <input type="email" id="login-email" placeholder="Email" required>
+                <!-- Email input field -->
                 <input type="password" id="login-password" placeholder="Password" required>
+                <!-- Password input field -->
                 <button type="submit">Login</button>
+                <!-- Submit button for the login form -->
             </form>
         </div>
 
         <div id="signup-form" class="auth-form" style="display:none;">
+            <!-- Sign Up form (initially hidden) -->
             <h2>Sign Up</h2>
+            <!-- Header for the sign up form -->
             <form id="signup" onsubmit="signup(event)">
+                <!-- Form for sign up, submitting triggers the signup function -->
                 <input type="text" id="signup-username" placeholder="Username" required>
+                <!-- Username input field -->
                 <input type="email" id="signup-email" placeholder="Email" required>
+                <!-- Email input field -->
                 <input type="password" id="signup-password" placeholder="Password" required>
+                <!-- Password input field -->
                 <button type="submit">Create Account</button>
+                <!-- Submit button for the sign up form -->
             </form>
         </div>
 
         <section id="welcome-section" class="content section-background1" data-bg="background1.jpg">
+            <!-- Welcome section with background image set through data attribute -->
             <div class="overlay">
+                <!-- Overlay div to add a darkened effect over the background -->
                 <h2>Welcome</h2>
+                <!-- Welcome message header -->
                 <p>Your gateway to innovative solutions and shared experiences. Dive in to explore what we have to offer!</p>
+                <!-- Welcome message content -->
             </div>
         </section>
 
         <section id="about-section" class="content section-background2" data-bg="background2.jpg">
+            <!-- About Me section with background image set through data attribute -->
             <div class="overlay">
+                <!-- Overlay div to add a darkened effect over the background -->
                 <h2>About Me</h2>
+                <!-- About Me header -->
                 <p>Jadooo &#128125;</p>
+                <!-- About Me content with an emoji -->
             </div>
         </section>
 
         <section id="protected-section" class="content section-background-protected" style="display:none;" data-bg="protected-background.jpg">
+            <!-- Protected section (initially hidden) with background image set through data attribute -->
             <div class="overlay">
+                <!-- Overlay div to add a darkened effect over the background -->
                 <h2>Protected Area</h2>
+                <!-- Protected Area header -->
                 <p>Explore the blueprint of my site.</p>
+                <!-- Protected Area content -->
                 <button onclick="showBlueprints()">Show Blueprints</button>
+                <!-- Button to trigger showing blueprints -->
             </div>
         </section>
     </main>
 
     <button id="back-to-top" title="Back to top">Top</button>
+    <!-- Button to scroll back to the top of the page, initially hidden -->
 
     <script src="script.js"></script>
+    <!-- Link to the external JavaScript file for handling interactivity -->
 </body>
 </html>
