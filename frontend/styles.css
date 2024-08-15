@@ -10,6 +10,9 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 header {
@@ -19,7 +22,8 @@ header {
     display: flex;
     justify-content: center; /* Center the header content */
     align-items: center;
-    text-align: center; /* Center the text within the header */
+    width: 100%;
+    position: relative;
 }
 
 .linkedin-icon {
@@ -27,6 +31,8 @@ header {
     font-size: 1.5em;
     text-decoration: none;
     transition: color 0.3s;
+    position: absolute;
+    left: 20px; /* Keep the LinkedIn icon on the left */
 }
 
 .linkedin-icon:hover {
@@ -37,13 +43,14 @@ h1 {
     font-size: 2em;
     margin: 0;
     text-shadow: 2px 2px 4px #000;
-    flex-grow: 1; /* Ensure the h1 takes up available space and centers itself */
-    text-align: center; /* Center the h1 text */
+    text-align: center;
 }
 
 .auth-buttons {
     display: flex;
     gap: 10px;
+    position: absolute;
+    right: 20px; /* Keep the buttons on the right */
 }
 
 .auth-buttons button {
