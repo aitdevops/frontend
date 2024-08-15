@@ -82,8 +82,6 @@ section {
     justify-content: center;
     align-items: center;
     position: relative;
-    margin: 0;  /* Ensure no margins are affecting centering */
-    padding: 0;  /* Ensure no padding is affecting centering */
 }
 
 .overlay {
@@ -92,12 +90,11 @@ section {
     border-radius: 10px;
     padding: 20px;
     max-width: 600px;
-    width: 80%;
+    width: 100%;  /* Ensure it takes the full width of the section */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center; /* Center the overlay content */
-    margin: auto; /* Ensure the overlay is centered */
+    text-align: center;
+    margin: auto;  /* Ensure the overlay is centered horizontally */
 }
-
 
 h2 {
     font-size: 1.8em;
