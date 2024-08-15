@@ -56,9 +56,9 @@ header {
 h1 {
     font-size: 2em;
     margin: 0;
-    margin-left: 30px; /* Adjust this value to move the text to the right */
+    margin-left: 20px; /* Adjust this value to move the text to the right */
     /* or */
-    margin-right: 20px; /* Adjust this value to move the text to the left */
+    margin-right: 40px; /* Adjust this value to move the text to the left */
     text-shadow: 2px 2px 4px #000;
     flex-grow: 1;
     text-align: center;
