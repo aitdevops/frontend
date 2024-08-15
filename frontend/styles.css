@@ -13,16 +13,17 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 header {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center; /* Center the header content */
-    align-items: center;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
@@ -32,7 +33,7 @@ header {
     text-decoration: none;
     transition: color 0.3s;
     position: absolute;
-    left: 20px; /* Keep the LinkedIn icon on the left */
+    left: 20px;
 }
 
 .linkedin-icon:hover {
@@ -43,14 +44,13 @@ h1 {
     font-size: 2em;
     margin: 0;
     text-shadow: 2px 2px 4px #000;
-    text-align: center;
 }
 
 .auth-buttons {
     display: flex;
     gap: 10px;
     position: absolute;
-    right: 20px; /* Keep the buttons on the right */
+    right: 20px;
 }
 
 .auth-buttons button {
@@ -80,7 +80,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
 }
 
 section {
@@ -98,10 +100,10 @@ section {
     border-radius: 10px;
     padding: 20px;
     max-width: 600px;
-    width: 100%;  /* Ensure it takes the full width of the section */
+    width: 100%;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
-    margin: auto;  /* Ensure the overlay is centered horizontally */
+    margin: auto;
 }
 
 h2 {
