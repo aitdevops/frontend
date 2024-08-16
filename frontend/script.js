@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         // Scrolls the page smoothly back to the top when the button is clicked
     });
+
+    // Check if there is a token in localStorage on page load
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        // Automatically log in the user if the token exists
+        loginWithToken(token);
+    }
 });
 
 function showLoginForm() {
@@ -66,6 +73,7 @@ function login(event) {
 
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
+    const rememberMe = document.getElementById('remember-me').checked;
     // Retrieves the values from the login form input fields
 
     fetch('https://auth.aitdevops.com/login', {
@@ -73,13 +81,15 @@ function login(event) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, rememberMe })
     })
     .then(response => response.json())
     .then(data => {
         if (data.token) {
-            localStorage.setItem('authToken', data.token);
-            // Stores the authentication token in the browser's local storage
+            if (rememberMe) {
+                localStorage.setItem('authToken', data.token);
+            }
+            // Stores the authentication token in the browser's local storage if "Remember Me" is checked
 
             alert('Login successful!');
             // Displays a success alert
@@ -105,6 +115,42 @@ function login(event) {
     })
     .catch(error => console.error('Error:', error));
     // Logs any errors that occur during the login process
+}
+
+function loginWithToken(token) {
+    // Function to handle automatic login with a stored token
+    fetch('https://auth.aitdevops.com/validate-token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.valid) {
+            alert('Welcome back!');
+            // Displays a welcome back message
+
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-btn').style.display = 'none';
+            document.getElementById('signup-btn').style.display = 'none';
+            document.getElementById('signout-btn').style.display = 'block';
+
+            document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('protected-section').style.display = 'block';
+
+            document.body.style.backgroundImage = "url('protected-background.jpg')";
+        } else {
+            signOut();
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        signOut();
+    });
 }
 
 function signup(event) {
