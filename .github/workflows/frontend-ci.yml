@@ -1,13 +1,15 @@
+# This GitHub Actions workflow is designed to trigger a CI (Continuous Integration) workflow in a specified GitHub repository whenever changes are pushed to the `main` branch of this repository.
+
 name: Trigger CI Workflow
 
 on:
   push:
     branches:
-      - main
+      - main  # This workflow triggers only when changes are pushed to the `main` branch
 
 jobs:
   trigger-ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # The job will run on the latest version of Ubuntu
 
     steps:
       - name: Trigger GitHub CI Workflow
@@ -17,3 +19,6 @@ jobs:
           -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
           https://api.github.com/repos/aitdevops/github-ci/dispatches \
           -d '{"event_type": "frontend_push", "client_payload": {"sha": "${{ github.sha }}"}}'
+# This step triggers a CI workflow in another GitHub repository (aitdevops/github-ci)
+# by making a POST request to the GitHub API. 
+# The request includes an event type ('frontend_push') and passes the current commit SHA as payload.
